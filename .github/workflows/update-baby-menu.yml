@@ -1,0 +1,40 @@
+name: Update baby menu
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Sunday 08:00 Asia/Shanghai = Sunday 00:00 UTC, before the weekly shopping run.
+    - cron: "0 0 * * 0"
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Generate next week's baby menu
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-5.5' }}
+        run: python scripts/update_baby_menu.py
+
+      - name: Commit updated menu
+        run: |
+          if [ -n "$(git status --porcelain docs/baby-menu/index.html)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add docs/baby-menu/index.html
+            git commit -m "Update baby menu"
+            git push
+          else
+            echo "No menu changes to commit."
+          fi
