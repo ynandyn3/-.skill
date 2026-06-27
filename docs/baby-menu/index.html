@@ -1,0 +1,785 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>宝宝这周吃什么</title>
+  <style>
+    :root {
+      --rice: #fff7d7;
+      --paper: #fffef8;
+      --ink: #243227;
+      --muted: #66736a;
+      --line: #dbe8cf;
+      --leaf: #2fa36b;
+      --leaf-dark: #19744d;
+      --tomato: #ff6b57;
+      --egg: #ffd35a;
+      --sky: #d8f3ff;
+      --lilac: #efe3ff;
+      --peach: #ffe1d6;
+      --mint: #e4f8df;
+      --shadow: 0 18px 50px rgba(37, 83, 61, 0.13);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(90deg, rgba(255, 211, 90, 0.16) 0 1px, transparent 1px 28px),
+        linear-gradient(180deg, rgba(47, 163, 107, 0.12) 0 1px, transparent 1px 28px),
+        linear-gradient(180deg, #fff4c9 0%, #eaf9f2 48%, #fff8df 100%);
+      color: var(--ink);
+      font-family: "Songti SC", "Noto Serif SC", "STSong", serif;
+      min-height: 100vh;
+      letter-spacing: 0;
+    }
+
+    button, input {
+      font: inherit;
+    }
+
+    .page {
+      width: min(100%, 760px);
+      margin: 0 auto;
+      padding: 18px 14px 40px;
+    }
+
+    .hero {
+      padding: 22px 18px 18px;
+      border: 1px solid rgba(47, 163, 107, 0.24);
+      border-radius: 8px;
+      background: linear-gradient(135deg, rgba(255, 254, 248, 0.94) 0%, rgba(228, 248, 223, 0.9) 100%);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 118px;
+      height: 118px;
+      right: -42px;
+      top: -38px;
+      border-radius: 50%;
+      background: repeating-linear-gradient(45deg, rgba(255, 107, 87, 0.2) 0 8px, rgba(255, 211, 90, 0.16) 8px 15px);
+    }
+
+    .kicker {
+      margin: 0 0 9px;
+      color: var(--leaf-dark);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(30px, 9vw, 50px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .sub {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+      max-width: 26em;
+    }
+
+    .meta-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: #e5f8ff;
+      color: var(--leaf-dark);
+      font-size: 13px;
+      border: 1px solid rgba(63, 127, 87, 0.18);
+    }
+
+    .section {
+      margin-top: 14px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 254, 248, 0.94);
+      box-shadow: 0 10px 26px rgba(37, 83, 61, 0.08);
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 21px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .today-card {
+      border-radius: 8px;
+      padding: 14px;
+      background: linear-gradient(135deg, #ddf7ff 0%, #fff2bf 52%, #e8f9df 100%);
+      border: 1px solid rgba(47, 163, 107, 0.18);
+    }
+
+    .today-date {
+      margin: 0 0 10px;
+      font-weight: 700;
+      color: var(--leaf-dark);
+    }
+
+    .meal-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .meal-item {
+      display: grid;
+      grid-template-columns: 3.5em 1fr;
+      gap: 10px;
+      align-items: start;
+      padding: 10px;
+      border-radius: 7px;
+      background: rgba(255, 255, 255, 0.58);
+      border: 1px solid rgba(255, 255, 255, 0.72);
+    }
+
+    .meal-label {
+      color: var(--tomato);
+      font-weight: 700;
+    }
+
+    .meal-text {
+      line-height: 1.55;
+    }
+
+    .meal-note {
+      margin-top: 6px;
+      padding-top: 6px;
+      border-top: 1px dashed rgba(47, 163, 107, 0.24);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .day-tabs {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .day-tab {
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #fffef8;
+      color: var(--muted);
+      min-height: 38px;
+      padding: 8px 4px;
+      cursor: pointer;
+    }
+
+    .day-tab.active {
+      background: linear-gradient(135deg, #2fa36b, #2f9bd4);
+      color: white;
+      border-color: var(--leaf);
+      font-weight: 700;
+    }
+
+    .shopping-tools {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .action {
+      border: 1px solid rgba(47, 163, 107, 0.3);
+      border-radius: 7px;
+      background: var(--leaf);
+      color: white;
+      padding: 9px 11px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .action.secondary {
+      background: #fffef8;
+      color: var(--leaf-dark);
+    }
+
+    .shop-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .shop-group {
+      padding: 12px;
+      border-radius: 8px;
+      background: #fff3d5;
+      border: 1px solid #f2d890;
+    }
+
+    .shop-group:nth-child(2n) {
+      background: #e4f8df;
+      border-color: #bfe8ba;
+    }
+
+    .shop-group h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      letter-spacing: 0;
+    }
+
+    .check-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    label.check {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 8px;
+      align-items: start;
+      line-height: 1.45;
+      color: #334137;
+    }
+
+    .check input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--leaf);
+      margin-top: 1px;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-left: 4px;
+      padding: 1px 6px 2px;
+      border-radius: 999px;
+      background: var(--sky);
+      color: #246578;
+      font-size: 11px;
+      white-space: nowrap;
+    }
+
+    .tag.keep {
+      background: var(--lilac);
+      color: #694f99;
+    }
+
+    .week-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .day-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fffdf8;
+    }
+
+    .day-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      background: #f4f8ec;
+      border-bottom: 1px solid var(--line);
+      font-weight: 700;
+    }
+
+    .day-head span:last-child {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 400;
+    }
+
+    .day-card .meal-list {
+      padding: 10px;
+      gap: 6px;
+    }
+
+    .day-card .meal-item {
+      padding: 8px;
+      background: #fffaf1;
+    }
+
+    .prep-list, .swap-list, .note-list {
+      display: grid;
+      gap: 9px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .prep-list li, .swap-list li, .note-list li {
+      padding: 10px 11px;
+      border-radius: 7px;
+      background: #f6fff2;
+      border: 1px solid #cfe9ca;
+      line-height: 1.55;
+    }
+
+    .swap-list strong {
+      color: var(--tomato);
+    }
+
+    .small-note {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .safety-strip {
+      padding: 12px 13px;
+      background: rgba(255, 245, 213, 0.72);
+      box-shadow: none;
+    }
+
+    .safety-strip .section-title {
+      margin-bottom: 6px;
+    }
+
+    .safety-strip h2 {
+      font-size: 16px;
+    }
+
+    .safety-strip p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%) translateY(20px);
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: white;
+      opacity: 0;
+      pointer-events: none;
+      transition: 180ms ease;
+      font-size: 13px;
+      z-index: 3;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (min-width: 700px) {
+      .page {
+        padding-top: 28px;
+      }
+
+      .shop-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .week-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .day-card:first-child {
+        grid-column: 1 / -1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <p class="kicker">2 岁半宝宝 · 2026.06.29-07.05</p>
+      <h1>宝宝这周吃什么</h1>
+      <p class="sub">周日买菜，每天照着看。早餐加一点绿叶菜，午餐必须有肉，晚餐选鸡蛋或纯素；每天最多 1 个鸡蛋。</p>
+      <div class="meta-row">
+        <span class="pill">无过敏忌口</span>
+        <span class="pill">三餐制</span>
+        <span class="pill">早餐蛋/肉</span>
+        <span class="pill">午餐有肉</span>
+        <span class="pill">晚餐蛋/素</span>
+        <span class="pill">每日 1 蛋</span>
+        <span class="pill">主食轮换</span>
+        <span class="pill">7 天采购</span>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="today-title">
+      <div class="section-title">
+        <h2 id="today-title">今日吃什么</h2>
+        <span class="hint" id="todayHint">自动匹配日期</span>
+      </div>
+      <div class="today-card">
+        <p class="today-date" id="todayName">周一</p>
+        <div class="meal-list" id="todayMeals"></div>
+      </div>
+      <div class="day-tabs" id="dayTabs" aria-label="切换日期"></div>
+    </section>
+
+    <section class="section" aria-labelledby="shopping-title">
+      <div class="section-title">
+        <h2 id="shopping-title">周日采购清单</h2>
+        <span class="hint">为这 7 天准备</span>
+      </div>
+      <div class="shopping-tools">
+        <button class="action" type="button" id="copyList">复制清单</button>
+        <button class="action secondary" type="button" id="clearChecks">清空勾选</button>
+      </div>
+      <div class="shop-grid" id="shoppingList"></div>
+      <p class="small-note">菠菜、小白菜、生菜、鲜鱼虾放前半周吃；带馅的小包子、小馄饨本身算一道菜，再配一道汤或素菜就够。</p>
+    </section>
+
+    <section class="section" aria-labelledby="prep-title">
+      <div class="section-title">
+        <h2 id="prep-title">周日备菜提醒</h2>
+      </div>
+      <ul class="prep-list">
+        <li>肉类按 1 餐 1 小袋分装冷冻：牛肉碎、鸡腿丁、猪肉末各分 2-3 袋，主要给午餐；早餐想吃肉时再取一小袋。</li>
+        <li>南瓜、胡萝卜可以提前蒸到半熟，冷藏 2-3 天内优先用。</li>
+        <li>西兰花、花菜、豆角、西葫芦先洗净控干；叶菜不建议提前切碎，做前再处理。</li>
+        <li>鱼虾如果买鲜的，周一周二优先吃；也可以直接买小份冷冻鳕鱼/虾仁。</li>
+        <li>给老人留一张“今日菜单”，只写菜名和关键处理：切小、煮软、少盐。</li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="swap-title">
+      <div class="section-title">
+        <h2 id="swap-title">没买到就这样换</h2>
+      </div>
+      <ul class="swap-list">
+        <li><strong>牛肉</strong> -> 鸡肉丁 / 猪肉末 / 鸡蛋。</li>
+        <li><strong>鳕鱼或鲈鱼</strong> -> 虾仁 / 三文鱼 / 豆腐羹。</li>
+        <li><strong>西兰花</strong> -> 花菜 / 菠菜 / 小白菜。</li>
+        <li><strong>芦笋、玉米笋</strong> -> 西葫芦 / 胡萝卜条 / 豆角。</li>
+        <li><strong>面条</strong> -> 软饭 / 小馄饨 / 小米粥。</li>
+      </ul>
+    </section>
+
+    <section class="section safety-strip" aria-labelledby="safe-title">
+      <div class="section-title">
+        <h2 id="safe-title">妈妈审核提醒</h2>
+      </div>
+      <p>家常搭配参考，不替代医生或专业营养建议。2 岁半仍要切小、煮软、看护进食；每天最多一个鸡蛋，午餐有肉，晚餐不放肉。</p>
+    </section>
+  </main>
+
+  <div class="toast" id="toast">已复制</div>
+
+  <script>
+    const weekStart = new Date("2026-06-29T00:00:00+08:00");
+
+    const days = [
+      {
+        name: "周一",
+        date: "6/29",
+        focus: "鲜菜先吃",
+        meals: {
+          breakfast: "主食：菠菜牛肉小包子｜搭配：牛奶",
+          lunch: "主食：软米饭｜肉菜：番茄鸡肉丁｜素菜：西葫芦胡萝卜丁",
+          dinner: "主食：小米馒头｜素菜：南瓜豆腐羹｜素菜：白菜白玉菇汤"
+        },
+        notes: {
+          breakfast: "包子馅里加少量菠菜碎，提前蒸好或冷冻，早上复热即可。",
+          lunch: "鸡肉、番茄切小丁，先把鸡肉煮熟再和番茄收软；西葫芦胡萝卜都切小粒。",
+          dinner: "南瓜和豆腐煮成软羹；白菜白玉菇汤不放蒜，煮软后剪小。"
+        }
+      },
+      {
+        name: "周二",
+        date: "6/30",
+        focus: "鱼虾优先",
+        meals: {
+          breakfast: "主食：小白菜鲜肉小馄饨｜搭配：苹果片",
+          lunch: "主食：软米饭｜肉菜：鳕鱼芦笋丁｜素菜：花菜土豆泥",
+          dinner: "主食：玉米软面｜蛋菜：西兰花鸡蛋碎｜素菜：冬瓜紫菜汤"
+        },
+        notes: {
+          breakfast: "小馄饨本身算一道菜，馅里放小白菜碎；苹果切薄片或小丁。",
+          lunch: "鳕鱼确认无刺后切丁，芦笋去老根切小；花菜和土豆蒸软压泥。",
+          dinner: "今天鸡蛋放晚餐，只用一个；冬瓜紫菜汤煮软，不放蒜。"
+        }
+      },
+      {
+        name: "周三",
+        date: "7/1",
+        focus: "软烂好嚼",
+        meals: {
+          breakfast: "主食：番茄生菜牛肉碎面｜搭配：蒸红薯",
+          lunch: "主食：软米饭｜肉菜：虾仁南瓜丁｜素菜：菠菜豆腐汤",
+          dinner: "主食：山药小馒头｜素菜：胡萝卜豌豆丁｜素菜：茄子香菇煲"
+        },
+        notes: {
+          breakfast: "牛肉碎提前分装，番茄煮软后下面；生菜最后剪碎烫熟。",
+          lunch: "虾仁切小丁，南瓜蒸到软；菠菜豆腐汤先焯菠菜再煮。",
+          dinner: "茄子香菇加水焖软，不放蒜；豌豆粒要煮透压一压。"
+        }
+      },
+      {
+        name: "周四",
+        date: "7/2",
+        focus: "换主食",
+        meals: {
+          breakfast: "主食：西兰花鸡蛋饼｜搭配：牛奶",
+          lunch: "主食：软米饭｜肉菜：鸡腿肉土豆丁｜素菜：丝瓜玉米笋汤",
+          dinner: "主食：小白菜素包子｜素菜：冬瓜紫菜汤"
+        },
+        notes: {
+          breakfast: "今天鸡蛋放早餐，只用一个；西兰花焯熟切碎再摊饼。",
+          lunch: "鸡腿肉去皮切丁，土豆煮软；丝瓜玉米笋汤清淡煮软。",
+          dinner: "素包子本身算一道菜，所以只配冬瓜紫菜汤。"
+        }
+      },
+      {
+        name: "周五",
+        date: "7/3",
+        focus: "耐放菜",
+        meals: {
+          breakfast: "主食：菠菜猪肉小馄饨｜搭配：苹果片",
+          lunch: "主食：软米饭｜肉菜：三文鱼胡萝卜丁｜素菜：芦笋白玉菇",
+          dinner: "主食：番茄疙瘩汤｜素菜：南瓜豆腐羹｜素菜：生菜碎汤"
+        },
+        notes: {
+          breakfast: "小馄饨馅里加菠菜碎，煮到皮软馅熟；苹果切小块。",
+          lunch: "三文鱼切小丁煎/蒸熟后拌胡萝卜；芦笋白玉菇切小段煮软。",
+          dinner: "疙瘩做小一点；当天早餐没有鸡蛋，这顿也可以不加蛋花。"
+        }
+      },
+      {
+        name: "周六",
+        date: "7/4",
+        focus: "周末简单",
+        meals: {
+          breakfast: "主食：小白菜鸡肉小包子｜搭配：牛奶",
+          lunch: "主食：软米饭｜肉菜：牛肉西葫芦丁｜素菜：花菜紫菜汤",
+          dinner: "主食：山药小馒头｜蛋菜：白菜鸡蛋碎｜素菜：茄子土豆煲"
+        },
+        notes: {
+          breakfast: "包子馅里加小白菜碎；如果是冷冻包子，复热后掰开确认不烫。",
+          lunch: "牛肉和西葫芦都切小丁，牛肉先煮/炒熟再混合。",
+          dinner: "今天鸡蛋放晚餐，只用一个；茄子土豆加水焖软，不放蒜。"
+        }
+      },
+      {
+        name: "周日",
+        date: "7/5",
+        focus: "清库存",
+        meals: {
+          breakfast: "主食：生菜鳕鱼小饼｜搭配：牛奶",
+          lunch: "主食：软米饭｜肉菜：虾仁番茄丁｜素菜：冬瓜豆腐汤",
+          dinner: "主食：南瓜软面｜素菜：胡萝卜豌豆丁｜素菜：丝瓜玉米笋汤"
+        },
+        notes: {
+          breakfast: "鳕鱼确认无刺，和生菜碎拌成小饼，煎/烙到全熟。",
+          lunch: "虾仁切丁，番茄煮软；冬瓜豆腐汤切小块、煮透。",
+          dinner: "软面煮久一点；豌豆粒煮透后压碎，丝瓜汤不放蒜。"
+        }
+      }
+    ];
+
+    const shopping = [
+      {
+        group: "肉蛋奶",
+        items: [
+          ["鸡蛋", "耐放"],
+          ["牛肉碎或牛肉末", "分装"],
+          ["鸡腿肉", "分装"],
+          ["猪肉末", "分装"],
+          ["鳕鱼或鲈鱼", "前半周"],
+          ["三文鱼小块", "冷冻"],
+          ["虾仁", "前半周"],
+          ["牛奶", "耐放"],
+          ["原味酸奶", "短保"],
+          ["豆腐", "前半周"]
+        ]
+      },
+      {
+        group: "青菜根茎",
+        items: [
+          ["西兰花", "前半周"],
+          ["菠菜", "前半周"],
+          ["小白菜", "前半周"],
+          ["生菜", "前半周"],
+          ["白菜", "耐放"],
+          ["豆角", "耐放"],
+          ["茄子", "前半周"],
+          ["芦笋", "前半周"],
+          ["玉米笋", "前半周"],
+          ["西葫芦", "前半周"],
+          ["花菜", "耐放"],
+          ["胡萝卜", "耐放"],
+          ["南瓜", "耐放"],
+          ["土豆", "耐放"],
+          ["山药", "耐放"],
+          ["冬瓜或丝瓜", "耐放"],
+          ["豌豆粒", "冷冻"],
+          ["紫菜", "耐放"],
+          ["香菇或白玉菇", "前半周"],
+          ["番茄", "前半周"],
+          ["上海青", "前半周"]
+        ]
+      },
+      {
+        group: "主食",
+        items: [
+          ["面条", "耐放"],
+          ["小包子", "冷冻"],
+          ["小馒头", "冷冻"],
+          ["吐司或面包", "短保"],
+          ["面粉", "耐放"],
+          ["小米", "耐放"],
+          ["大米", "耐放"],
+          ["燕麦或藜麦", "耐放"],
+          ["馄饨皮", "冷藏"],
+          ["红薯或紫薯", "耐放"],
+          ["玉米粒", "冷冻"]
+        ]
+      },
+      {
+        group: "水果可选",
+        items: [
+          ["香蕉", "前半周"],
+          ["苹果", "耐放"],
+          ["蓝莓或草莓", "前半周"]
+        ]
+      }
+    ];
+
+    const mealLabels = {
+      breakfast: "早餐",
+      lunch: "午餐",
+      dinner: "晚餐"
+    };
+
+    function getDayIndex() {
+      const now = new Date();
+      const diff = Math.floor((new Date(now.getFullYear(), now.getMonth(), now.getDate()) - weekStart) / 86400000);
+      if (diff >= 0 && diff <= 6) return diff;
+      return 0;
+    }
+
+    function renderToday(index) {
+      const day = days[index];
+      document.getElementById("todayName").textContent = `${day.name} ${day.date} · ${day.focus}`;
+      document.getElementById("todayMeals").innerHTML = Object.entries(day.meals).map(([key, value]) => `
+        <div class="meal-item">
+          <div class="meal-label">${mealLabels[key]}</div>
+          <div class="meal-text">
+            ${value}
+            <div class="meal-note">${day.notes[key]}</div>
+          </div>
+        </div>
+      `).join("");
+      document.querySelectorAll(".day-tab").forEach((button, buttonIndex) => {
+        button.classList.toggle("active", buttonIndex === index);
+      });
+    }
+
+    function renderTabs() {
+      const tabs = document.getElementById("dayTabs");
+      tabs.innerHTML = days.map((day, index) => `
+        <button class="day-tab" type="button" data-index="${index}">${day.name.replace("周", "")}</button>
+      `).join("");
+      tabs.addEventListener("click", (event) => {
+        const button = event.target.closest("button");
+        if (!button) return;
+        renderToday(Number(button.dataset.index));
+      });
+    }
+
+    function renderShopping() {
+      document.getElementById("shoppingList").innerHTML = shopping.map((group, groupIndex) => `
+        <div class="shop-group">
+          <h3>${group.group}</h3>
+          <div class="check-list">
+            ${group.items.map(([name, tag], itemIndex) => {
+              const id = `shop-${groupIndex}-${itemIndex}`;
+              return `
+                <label class="check" for="${id}">
+                  <input id="${id}" type="checkbox" data-check-key="${id}">
+                  <span>${name}<span class="tag ${tag === "耐放" || tag === "冷冻" || tag === "分装" ? "keep" : ""}">${tag}</span></span>
+                </label>
+              `;
+            }).join("")}
+          </div>
+        </div>
+      `).join("");
+
+      document.querySelectorAll("[data-check-key]").forEach((input) => {
+        const key = input.dataset.checkKey;
+        input.checked = localStorage.getItem(key) === "1";
+        input.addEventListener("change", () => {
+          localStorage.setItem(key, input.checked ? "1" : "0");
+        });
+      });
+    }
+
+    function showToast(text) {
+      const toast = document.getElementById("toast");
+      toast.textContent = text;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 1400);
+    }
+
+    function getShoppingText() {
+      return shopping.map((group) => {
+        const items = group.items.map(([name, tag]) => `- ${name}（${tag}）`).join("\n");
+        return `${group.group}\n${items}`;
+      }).join("\n\n");
+    }
+
+    document.getElementById("copyList").addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(`宝宝这周吃什么｜周日采购清单\n\n${getShoppingText()}`);
+        showToast("采购清单已复制");
+      } catch {
+        showToast("复制失败，可长按手动选择");
+      }
+    });
+
+    document.getElementById("clearChecks").addEventListener("click", () => {
+      document.querySelectorAll("[data-check-key]").forEach((input) => {
+        input.checked = false;
+        localStorage.removeItem(input.dataset.checkKey);
+      });
+      showToast("勾选已清空");
+    });
+
+    renderTabs();
+    renderShopping();
+    renderToday(getDayIndex());
+  </script>
+</body>
+</html>
