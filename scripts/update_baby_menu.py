@@ -21,6 +21,53 @@ HTML_PATH = ROOT / "docs" / "baby-menu" / "index.html"
 TIMEZONE = ZoneInfo("Asia/Shanghai")
 ANCHOR_MONDAY = dt.date(2026, 6, 29)
 DAY_NAMES = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]
+ACTIVE_PLAN_INDEXES = [1]
+TRACKED_INGREDIENTS = [
+    "白玉菇",
+    "海鲜菇",
+    "上海青",
+    "油麦菜",
+    "娃娃菜",
+    "圆白菜",
+    "紫甘蓝",
+    "西兰花",
+    "西葫芦",
+    "白萝卜",
+    "青萝卜",
+    "玉米笋",
+    "黄豆芽",
+    "绿豆芽",
+    "海带芽",
+    "裙带菜",
+    "四季豆",
+    "豆腐",
+    "油菜",
+    "菜心",
+    "茼蒿",
+    "空心菜",
+    "白菜",
+    "大头菜",
+    "冬瓜",
+    "南瓜",
+    "番茄",
+    "花菜",
+    "胡萝卜",
+    "土豆",
+    "山药",
+    "芋头",
+    "莴笋",
+    "莲藕",
+    "丝瓜",
+    "芦笋",
+    "黄瓜",
+    "茄子",
+    "口蘑",
+    "香菇",
+    "豌豆",
+    "海带",
+    "紫菜",
+    "彩椒",
+]
 
 
 WEEK_PLANS = [
@@ -143,39 +190,39 @@ WEEK_PLANS = [
                 "focus": "补铁安排",
                 "meals": {
                     "breakfast": "主食：上海青猪肉小饼｜搭配：牛奶",
-                    "lunch": "主食：南瓜软饭｜肉菜：鸡肉四季豆丁｜素菜：西兰花土豆泥",
-                    "dinner": "主食：番茄面片汤｜素菜：冬瓜豆腐丁｜素菜：菜心碎汤",
+                    "lunch": "主食：南瓜软饭｜肉菜：鳕鱼四季豆丁｜素菜：西兰花土豆泥",
+                    "dinner": "主食：小米面片汤｜素菜：丝瓜海鲜菇｜素菜：芋头菜心汤",
                 },
                 "notes": {
                     "breakfast": "上海青焯软切碎，猪肉末做熟后拌进小饼。",
                     "lunch": "四季豆一定煮透切碎；西兰花土豆蒸软压泥。",
-                    "dinner": "面片做小，番茄煮软；菜心最后剪碎烫熟。",
+                    "dinner": "面片做小，丝瓜和海鲜菇煮软；菜心最后剪碎烫熟。",
                 },
             },
             {
                 "focus": "鱼肉换口味",
                 "meals": {
-                    "breakfast": "主食：油菜鸡肉小馄饨｜搭配：香蕉块",
-                    "lunch": "主食：软米饭｜肉菜：鲈鱼胡萝卜丁｜素菜：丝瓜海鲜菇汤",
-                    "dinner": "主食：甜玉米小饼｜蛋菜：西葫芦鸡蛋碎｜素菜：圆白菜豆腐汤",
+                    "breakfast": "主食：油菜虾仁小馄饨｜搭配：香蕉块",
+                    "lunch": "主食：软米饭｜肉菜：鲈鱼青萝卜丁｜素菜：莴笋口蘑汤",
+                    "dinner": "主食：甜玉米小饼｜素菜：西葫芦圆白菜丁｜素菜：海带芽汤",
                 },
                 "notes": {
-                    "breakfast": "小馄饨馅里加油菜碎；香蕉切小块。",
-                    "lunch": "鲈鱼确认无刺后切丁，胡萝卜煮软。",
-                    "dinner": "今天鸡蛋放晚餐，只用一个；圆白菜和西葫芦都切细丝更好熟。",
+                    "breakfast": "小馄饨馅里加油菜碎和虾仁丁；香蕉切小块。",
+                    "lunch": "鲈鱼确认无刺后切丁，青萝卜煮软。",
+                    "dinner": "西葫芦和圆白菜都切细丝更好熟；海带芽少量煮软。",
                 },
             },
             {
                 "focus": "软饭日",
                 "meals": {
-                    "breakfast": "主食：西兰花牛肉碎面｜搭配：苹果片",
-                    "lunch": "主食：软米饭｜肉菜：虾仁山药丁｜素菜：茼蒿南瓜汤",
-                    "dinner": "主食：圆白菜素饺子｜素菜：番茄豆腐汤",
+                    "breakfast": "主食：番茄牛肉碎面｜搭配：苹果片",
+                    "lunch": "主食：软米饭｜肉菜：鸡肉山药丁｜素菜：茼蒿黄豆芽汤",
+                    "dinner": "主食：白菜素饺子｜素菜：豆腐彩椒羹",
                 },
                 "notes": {
-                    "breakfast": "牛肉碎提前分装，西兰花焯熟切碎后下进面里。",
-                    "lunch": "虾仁切丁，山药蒸软；茼蒿南瓜汤煮到入口软。",
-                    "dinner": "素饺子本身算一道菜，所以只配番茄豆腐汤。",
+                    "breakfast": "牛肉碎提前分装，番茄煮软后下进面里。",
+                    "lunch": "鸡肉切丁，山药蒸软；黄豆芽切短后和茼蒿煮透。",
+                    "dinner": "素饺子本身算一道菜，所以只配豆腐彩椒羹。",
                 },
             },
             {
@@ -183,38 +230,38 @@ WEEK_PLANS = [
                 "meals": {
                     "breakfast": "主食：娃娃菜鲜肉小包子｜搭配：牛奶",
                     "lunch": "主食：软米饭｜肉菜：猪肉茄子丁｜素菜：紫甘蓝胡萝卜碎",
-                    "dinner": "主食：山药疙瘩汤｜素菜：南瓜豆腐丁｜素菜：冬瓜裙带菜汤",
+                    "dinner": "主食：小米疙瘩汤｜素菜：冬瓜裙带菜汤｜素菜：芋头豌豆泥",
                 },
                 "notes": {
                     "breakfast": "包子馅里加娃娃菜碎，早上复热后放温再吃。",
                     "lunch": "猪肉和茄子都切小，茄子焖软；紫甘蓝胡萝卜蒸软切碎。",
-                    "dinner": "疙瘩做小，山药煮到软糯；冬瓜切薄片，裙带菜少量。",
+                    "dinner": "疙瘩做小；冬瓜切薄片，裙带菜少量；芋头蒸软后和豌豆压泥。",
                 },
             },
             {
                 "focus": "周末省心",
                 "meals": {
-                    "breakfast": "主食：空心菜鸡蛋饼｜搭配：梨丁",
-                    "lunch": "主食：软米饭｜肉菜：鸡肉西葫芦丁｜素菜：芋头豌豆泥",
-                    "dinner": "主食：红薯小馒头｜素菜：白菜白玉菇汤｜素菜：莴笋豆腐丁",
+                    "breakfast": "主食：油菜鸡蛋饼｜搭配：梨丁",
+                    "lunch": "主食：软米饭｜肉菜：虾仁西葫芦丁｜素菜：莲藕土豆泥",
+                    "dinner": "主食：红薯小馒头｜素菜：上海青口蘑汤｜素菜：莴笋玉米笋丁",
                 },
                 "notes": {
-                    "breakfast": "今天鸡蛋放早餐，只用一个；空心菜焯软切碎再摊饼。",
-                    "lunch": "鸡肉和西葫芦切小丁，芋头豌豆蒸软后压一压。",
-                    "dinner": "白玉菇切短，汤煮软；豆腐丁不要太大。",
+                    "breakfast": "今天鸡蛋放早餐，只用一个；油菜焯软切碎再摊饼。",
+                    "lunch": "虾仁和西葫芦切小丁，莲藕擦碎后和土豆蒸软压泥。",
+                    "dinner": "上海青和口蘑煮软；莴笋玉米笋都切小丁。",
                 },
             },
             {
                 "focus": "清淡收尾",
                 "meals": {
                     "breakfast": "主食：菜心牛肉小包子｜搭配：牛奶",
-                    "lunch": "主食：软米饭｜肉菜：鳕鱼番茄丁｜素菜：青萝卜玉米笋汤",
-                    "dinner": "主食：小米软面｜素菜：西兰花土豆泥｜素菜：丝瓜豆腐汤",
+                    "lunch": "主食：软米饭｜肉菜：鳕鱼番茄丁｜素菜：青萝卜紫菜汤",
+                    "dinner": "主食：小米软面｜素菜：西兰花豆腐羹｜素菜：丝瓜海鲜菇汤",
                 },
                 "notes": {
                     "breakfast": "包子馅里加菜心碎，复热后确认中间热透。",
                     "lunch": "鳕鱼确认无刺，番茄煮软后拌鱼丁。",
-                    "dinner": "西兰花土豆蒸软压泥，丝瓜豆腐汤煮软。",
+                    "dinner": "西兰花和豆腐煮成软羹，丝瓜海鲜菇汤煮软。",
                 },
             },
         ],
@@ -439,7 +486,8 @@ def date_range_text(start: dt.date) -> str:
 
 def selected_plan(start: dt.date) -> dict:
     week_number = max(0, (start - ANCHOR_MONDAY).days // 7)
-    return WEEK_PLANS[week_number % len(WEEK_PLANS)]
+    plan_index = ACTIVE_PLAN_INDEXES[week_number % len(ACTIVE_PLAN_INDEXES)]
+    return WEEK_PLANS[plan_index]
 
 
 def with_dates(start: dt.date, plan_days: list[dict]) -> list[dict]:
@@ -456,6 +504,16 @@ def with_dates(start: dt.date, plan_days: list[dict]) -> list[dict]:
             }
         )
     return dated
+
+
+def extract_ingredients(text: str) -> set[str]:
+    found: set[str] = set()
+    remaining = text
+    for ingredient in sorted(TRACKED_INGREDIENTS, key=len, reverse=True):
+        if ingredient in remaining:
+            found.add(ingredient)
+            remaining = remaining.replace(ingredient, "")
+    return found
 
 
 def validate_menu(days: list[dict]) -> None:
@@ -496,6 +554,27 @@ def validate_menu(days: list[dict]) -> None:
             raise ValueError(f"Lunch must contain meat/fish/shrimp in {day.get('name')}: {meals['lunch']}")
         if any(word in meals["dinner"] for word in meat_words):
             raise ValueError(f"Dinner contains meat/fish/shrimp in {day.get('name')}: {meals['dinner']}")
+
+    day_ingredients = []
+    for day in days:
+        day_sets = {meal_name: extract_ingredients(meal_text) for meal_name, meal_text in day["meals"].items()}
+        seen: dict[str, str] = {}
+        for meal_name, ingredients in day_sets.items():
+            for ingredient in ingredients:
+                if ingredient in seen:
+                    raise ValueError(
+                        f"Ingredient {ingredient!r} repeats in one day: {day.get('name')} "
+                        f"{seen[ingredient]} and {meal_name}"
+                    )
+                seen[ingredient] = meal_name
+        day_ingredients.append(set().union(*day_sets.values()))
+
+    for start_index in range(len(day_ingredients) - 2):
+        window = day_ingredients[start_index : start_index + 3]
+        for ingredient in TRACKED_INGREDIENTS:
+            hit_days = [DAY_NAMES[start_index + offset] for offset, ingredients in enumerate(window) if ingredient in ingredients]
+            if len(hit_days) > 1:
+                raise ValueError(f"Ingredient {ingredient!r} repeats within 3 days: {', '.join(hit_days)}")
 
 
 def to_js(value: object) -> str:
