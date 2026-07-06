@@ -259,7 +259,6 @@ def validate_menu(days: list[dict]) -> None:
     ]
     meat_words = ["牛肉", "鸡肉", "猪肉", "肉末", "肉丁", "鲜肉", "三文鱼", "鳕鱼", "虾仁"]
     breakfast_greens = ["菠菜", "小白菜", "油麦菜", "油菜", "菜心", "上海青", "西兰花", "生菜", "圆白菜"]
-    noodle_words = ["面条", "碎面", "软面", "汤面", "面片"]
 
     for day in days:
         meals = day.get("meals", {})
@@ -285,8 +284,21 @@ def validate_menu(days: list[dict]) -> None:
         if "面" in breakfast and "牛奶" in breakfast:
             raise ValueError(f"Noodle breakfast should not pair with milk in {day.get('name')}: {breakfast}")
         for meal_name, meal in meals.items():
-            if any(word in meal for word in noodle_words) and "蛋" not in meal:
+            if "面" in meal and "蛋" not in meal:
                 raise ValueError(f"Noodle meal needs egg in {day.get('name')} {meal_name}: {meal}")
+        noodle_meals = {name: meal for name, meal in meals.items() if "碎面" in meal}
+        for meal_name, meal in noodle_meals.items():
+            if "蛋" not in meal:
+                raise ValueError(f"Minced noodle meal needs egg in {day.get('name')} {meal_name}: {meal}")
+            other_egg_meals = [
+                other_name
+                for other_name, other_meal in meals.items()
+                if other_name != meal_name and "蛋" in other_meal
+            ]
+            if other_egg_meals:
+                raise ValueError(
+                    f"Other meals must remove egg when minced noodles have egg in {day.get('name')}: {meals}"
+                )
 
         breakfast_has_egg = "蛋" in breakfast
         if breakfast_has_egg and "蛋" in dinner:
@@ -334,7 +346,11 @@ def update_html(start: dt.date, days: list[dict], shopping: list[dict]) -> None:
     html = html.replace("牛肉碎、鸡腿丁、猪肉末", "牛肉末、鸡肉、猪肉末")
     html = html.replace(
         "早餐加一点绿叶菜，午餐必须有肉，晚餐选鸡蛋或纯素；每天最多 1 个鸡蛋。",
+        "早餐加一点绿叶菜，碎面里加鸡蛋，午餐必须有肉，晚餐选鸡蛋或纯素；每天最多 1 个鸡蛋。",
+    )
+    html = html.replace(
         "早餐加一点绿叶菜，面条里加鸡蛋，午餐必须有肉，晚餐选鸡蛋或纯素；每天最多 1 个鸡蛋。",
+        "早餐加一点绿叶菜，碎面里加鸡蛋，午餐必须有肉，晚餐选鸡蛋或纯素；每天最多 1 个鸡蛋。",
     )
     html = html.replace(
         "<li><strong>鳕鱼或鲈鱼</strong> -> 虾仁 / 三文鱼 / 豆腐羹。</li>",
