@@ -48,17 +48,17 @@ WEEK_PLAN = {
             },
         },
         {
-            "focus": "面条配水果",
-            "tags": ["油麦菜", "香菇", "苹果", "鸡肉", "莲藕", "莴笋", "胡萝卜", "丝瓜", "海鲜菇", "圆白菜"],
+            "focus": "鸡蛋面配水果",
+            "tags": ["油麦菜", "香菇", "苹果", "鸡肉", "莲藕", "莴笋", "胡萝卜", "丝瓜", "海鲜菇", "圆白菜", "口蘑"],
             "meals": {
-                "breakfast": "主食：油麦菜香菇碎面｜搭配：苹果片",
+                "breakfast": "主食：油麦菜香菇鸡蛋碎面｜搭配：苹果片",
                 "lunch": "主食：软米饭｜肉菜：鸡肉莲藕丸｜素菜：莴笋胡萝卜丁",
-                "dinner": "主食：玉米疙瘩汤｜素菜：丝瓜海鲜菇汤｜蛋菜：圆白菜鸡蛋碎",
+                "dinner": "主食：玉米疙瘩汤｜素菜：丝瓜海鲜菇汤｜素菜：圆白菜口蘑汤",
             },
             "notes": {
-                "breakfast": "油麦菜最后剪碎烫熟，香菇切薄片煮透；苹果切薄片或小丁。",
+                "breakfast": "今天鸡蛋放早餐，只用一个；油麦菜最后剪碎烫熟，鸡蛋打散成蛋花，香菇切薄片煮透。",
                 "lunch": "鸡肉剁泥，莲藕擦碎后拌进肉泥做小丸子，煮熟再给宝宝吃。",
-                "dinner": "早餐没吃蛋，晚餐用一个鸡蛋；圆白菜切碎后和蛋液一起炒成软碎。",
+                "dinner": "早餐吃过蛋，晚餐不再用蛋；丝瓜和海鲜菇切小煮透，圆白菜切碎，口蘑切薄片煮软。",
             },
         },
         {
@@ -163,6 +163,7 @@ WEEK_PLAN = {
                 ["豌豆粒", "冷冻"],
                 ["芦笋", "前半周"],
                 ["香菇", "前半周"],
+                ["口蘑", "前半周"],
                 ["白玉菇", "前半周"],
                 ["海鲜菇", "前半周"],
                 ["杏鲍菇", "前半周"],
@@ -258,6 +259,7 @@ def validate_menu(days: list[dict]) -> None:
     ]
     meat_words = ["牛肉", "鸡肉", "猪肉", "肉末", "肉丁", "鲜肉", "三文鱼", "鳕鱼", "虾仁"]
     breakfast_greens = ["菠菜", "小白菜", "油麦菜", "油菜", "菜心", "上海青", "西兰花", "生菜", "圆白菜"]
+    noodle_words = ["面条", "碎面", "软面", "汤面", "面片"]
 
     for day in days:
         meals = day.get("meals", {})
@@ -282,6 +284,9 @@ def validate_menu(days: list[dict]) -> None:
             raise ValueError(f"Wonton breakfast should not pair with milk in {day.get('name')}: {breakfast}")
         if "面" in breakfast and "牛奶" in breakfast:
             raise ValueError(f"Noodle breakfast should not pair with milk in {day.get('name')}: {breakfast}")
+        for meal_name, meal in meals.items():
+            if any(word in meal for word in noodle_words) and "蛋" not in meal:
+                raise ValueError(f"Noodle meal needs egg in {day.get('name')} {meal_name}: {meal}")
 
         breakfast_has_egg = "蛋" in breakfast
         if breakfast_has_egg and "蛋" in dinner:
@@ -327,6 +332,10 @@ def update_html(start: dt.date, days: list[dict], shopping: list[dict]) -> None:
         "叶菜、鲜鱼虾优先前半周吃；带馅的小包子、小馄饨本身算一道菜，再配一道汤或素菜就够。",
     )
     html = html.replace("牛肉碎、鸡腿丁、猪肉末", "牛肉末、鸡肉、猪肉末")
+    html = html.replace(
+        "早餐加一点绿叶菜，午餐必须有肉，晚餐选鸡蛋或纯素；每天最多 1 个鸡蛋。",
+        "早餐加一点绿叶菜，面条里加鸡蛋，午餐必须有肉，晚餐选鸡蛋或纯素；每天最多 1 个鸡蛋。",
+    )
     html = html.replace(
         "<li><strong>鳕鱼或鲈鱼</strong> -> 虾仁 / 三文鱼 / 豆腐羹。</li>",
         "<li><strong>鳕鱼</strong> -> 三文鱼 / 虾仁 / 豆腐羹。</li>",
