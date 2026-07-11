@@ -69,6 +69,38 @@
       background: repeating-linear-gradient(45deg, rgba(255, 107, 87, 0.2) 0 8px, rgba(255, 211, 90, 0.16) 8px 15px);
     }
 
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 92px;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .hero-copy {
+      min-width: 0;
+    }
+
+    .hero-avatar {
+      width: 92px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      padding: 4px;
+      background: linear-gradient(135deg, #fff7d7, #d8f3ff);
+      border: 1px solid rgba(47, 163, 107, 0.3);
+      box-shadow: 0 12px 28px rgba(37, 83, 61, 0.16);
+    }
+
+    .hero-avatar img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: 50% 44%;
+    }
+
     .kicker {
       margin: 0 0 9px;
       color: var(--leaf-dark);
@@ -92,6 +124,8 @@
     }
 
     .meta-row {
+      position: relative;
+      z-index: 1;
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
@@ -234,11 +268,11 @@
 
     .shop-grid {
       display: grid;
-      gap: 10px;
+      gap: 8px;
     }
 
     .shop-group {
-      padding: 12px;
+      padding: 10px;
       border-radius: 8px;
       background: #fff3d5;
       border: 1px solid #f2d890;
@@ -250,40 +284,47 @@
     }
 
     .shop-group h3 {
-      margin: 0 0 8px;
-      font-size: 16px;
+      margin: 0 0 7px;
+      font-size: 15px;
       letter-spacing: 0;
     }
 
     .check-list {
       display: grid;
-      gap: 8px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 5px 8px;
     }
 
     label.check {
       display: grid;
-      grid-template-columns: 22px 1fr;
-      gap: 8px;
+      grid-template-columns: 17px minmax(0, 1fr);
+      gap: 5px;
       align-items: start;
-      line-height: 1.45;
+      min-width: 0;
+      line-height: 1.25;
       color: #334137;
+      font-size: 13px;
     }
 
     .check input {
-      width: 18px;
-      height: 18px;
+      width: 15px;
+      height: 15px;
       accent-color: var(--leaf);
-      margin-top: 1px;
+      margin-top: 0;
+    }
+
+    .check span {
+      min-width: 0;
     }
 
     .tag {
       display: inline-block;
       margin-left: 4px;
-      padding: 1px 6px 2px;
+      padding: 1px 4px 2px;
       border-radius: 999px;
       background: var(--sky);
       color: #246578;
-      font-size: 11px;
+      font-size: 10px;
       white-space: nowrap;
     }
 
@@ -352,7 +393,7 @@
     }
 
     .small-note {
-      margin: 10px 0 0;
+      margin: 8px 0 0;
       color: var(--muted);
       font-size: 12px;
       line-height: 1.6;
@@ -406,7 +447,11 @@
       }
 
       .shop-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .check-list {
+        grid-template-columns: 1fr;
       }
 
       .week-grid {
@@ -417,14 +462,40 @@
         grid-column: 1 / -1;
       }
     }
+
+    @media (max-width: 430px) {
+      .hero-inner {
+        grid-template-columns: 1fr 76px;
+        gap: 10px;
+      }
+
+      .hero-avatar {
+        width: 76px;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+
+      .sub {
+        font-size: 14px;
+      }
+    }
   </style>
 </head>
 <body>
   <main class="page">
     <section class="hero">
-      <p class="kicker">2 岁半宝宝 · 2026.07.06-07.12</p>
-      <h1>宝宝这周吃什么</h1>
-      <p class="sub">周日买菜，每天照着看。早餐加一点绿叶菜，碎面里加鸡蛋，午餐必须有肉，晚餐选鸡蛋或纯素；每天最多 1 个鸡蛋。</p>
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <p class="kicker">2 岁半宝宝 · 2026.07.06-07.12</p>
+          <h1>宝宝这周吃什么</h1>
+          <p class="sub">周日买菜，每天照着看。早餐加一点绿叶菜，碎面里加鸡蛋，午餐必须有肉，晚餐选鸡蛋或纯素；每天最多 1 个鸡蛋。</p>
+        </div>
+        <div class="hero-avatar" aria-hidden="true">
+          <img src="baby-avatar.png" alt="">
+        </div>
+      </div>
       <div class="meta-row">
         <span class="pill">无过敏忌口</span>
         <span class="pill">三餐制</span>
