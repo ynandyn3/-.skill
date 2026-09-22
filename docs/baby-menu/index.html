@@ -6,20 +6,20 @@
   <title>宝宝这周吃什么</title>
   <style>
     :root {
-      --rice: #fff7d7;
-      --paper: #fffef8;
-      --ink: #243227;
-      --muted: #66736a;
-      --line: #dbe8cf;
-      --leaf: #2fa36b;
-      --leaf-dark: #19744d;
-      --tomato: #ff6b57;
-      --egg: #ffd35a;
-      --sky: #d8f3ff;
-      --lilac: #efe3ff;
-      --peach: #ffe1d6;
-      --mint: #e4f8df;
-      --shadow: 0 18px 50px rgba(37, 83, 61, 0.13);
+      --rice: #fff6b8;
+      --paper: #fffdf6;
+      --ink: #111111;
+      --muted: #4f4f4f;
+      --line: #111111;
+      --leaf: #46d977;
+      --leaf-dark: #111111;
+      --tomato: #f15cac;
+      --egg: #fff08a;
+      --sky: #dfeeff;
+      --lilac: #ead8ff;
+      --peach: #ffd7bd;
+      --mint: #d9f7e5;
+      --shadow: 6px 7px 0 rgba(17, 17, 17, 0.92);
     }
 
     * {
@@ -29,9 +29,9 @@
     body {
       margin: 0;
       background:
-        linear-gradient(90deg, rgba(255, 211, 90, 0.16) 0 1px, transparent 1px 28px),
-        linear-gradient(180deg, rgba(47, 163, 107, 0.12) 0 1px, transparent 1px 28px),
-        linear-gradient(180deg, #fff4c9 0%, #eaf9f2 48%, #fff8df 100%);
+        linear-gradient(90deg, rgba(17, 17, 17, 0.05) 0 1px, transparent 1px 30px),
+        linear-gradient(180deg, rgba(17, 17, 17, 0.04) 0 1px, transparent 1px 30px),
+        linear-gradient(180deg, #f7f7f2 0%, #fff6b8 42%, #ead8ff 100%);
       color: var(--ink);
       font-family: "Songti SC", "Noto Serif SC", "STSong", serif;
       min-height: 100vh;
@@ -50,9 +50,9 @@
 
     .hero {
       padding: 22px 18px 18px;
-      border: 1px solid rgba(47, 163, 107, 0.24);
+      border: 3px solid var(--ink);
       border-radius: 8px;
-      background: linear-gradient(135deg, rgba(255, 254, 248, 0.94) 0%, rgba(228, 248, 223, 0.9) 100%);
+      background: linear-gradient(135deg, var(--leaf) 0 34%, var(--paper) 34% 100%);
       box-shadow: var(--shadow);
       position: relative;
       overflow: hidden;
@@ -66,7 +66,7 @@
       right: -42px;
       top: -38px;
       border-radius: 50%;
-      background: repeating-linear-gradient(45deg, rgba(255, 107, 87, 0.2) 0 8px, rgba(255, 211, 90, 0.16) 8px 15px);
+      background: repeating-linear-gradient(45deg, rgba(241, 92, 172, 0.58) 0 8px, rgba(255, 240, 138, 0.72) 8px 15px);
     }
 
     .hero-inner {
@@ -87,9 +87,9 @@
       aspect-ratio: 1;
       border-radius: 50%;
       padding: 4px;
-      background: linear-gradient(135deg, #fff7d7, #d8f3ff);
-      border: 1px solid rgba(47, 163, 107, 0.3);
-      box-shadow: 0 12px 28px rgba(37, 83, 61, 0.16);
+      background: linear-gradient(135deg, var(--tomato), var(--egg));
+      border: 3px solid var(--ink);
+      box-shadow: 4px 5px 0 rgba(17, 17, 17, 0.92);
     }
 
     .hero-avatar img {
@@ -138,19 +138,19 @@
       gap: 6px;
       padding: 7px 10px;
       border-radius: 999px;
-      background: #e5f8ff;
-      color: var(--leaf-dark);
+      background: var(--sky);
+      color: var(--ink);
       font-size: 13px;
-      border: 1px solid rgba(63, 127, 87, 0.18);
+      border: 2px solid var(--ink);
     }
 
     .section {
       margin-top: 14px;
       padding: 16px;
-      border: 1px solid var(--line);
+      border: 2px solid var(--line);
       border-radius: 8px;
-      background: rgba(255, 254, 248, 0.94);
-      box-shadow: 0 10px 26px rgba(37, 83, 61, 0.08);
+      background: rgba(255, 253, 246, 0.96);
+      box-shadow: 4px 5px 0 rgba(17, 17, 17, 0.88);
     }
 
     .section-title {
@@ -177,8 +177,8 @@
     .today-card {
       border-radius: 8px;
       padding: 14px;
-      background: linear-gradient(135deg, #ddf7ff 0%, #fff2bf 52%, #e8f9df 100%);
-      border: 1px solid rgba(47, 163, 107, 0.18);
+      background: linear-gradient(135deg, var(--sky) 0%, var(--egg) 52%, var(--lilac) 100%);
+      border: 2px solid var(--ink);
     }
 
     .today-date {
@@ -199,8 +199,8 @@
       align-items: start;
       padding: 10px;
       border-radius: 7px;
-      background: rgba(255, 255, 255, 0.58);
-      border: 1px solid rgba(255, 255, 255, 0.72);
+      background: rgba(255, 255, 255, 0.9);
+      border: 2px solid rgba(17, 17, 17, 0.92);
     }
 
     .meal-label {
@@ -215,7 +215,7 @@
     .meal-note {
       margin-top: 6px;
       padding-top: 6px;
-      border-top: 1px dashed rgba(47, 163, 107, 0.24);
+      border-top: 1px dashed rgba(17, 17, 17, 0.34);
       color: var(--muted);
       font-size: 12px;
       line-height: 1.55;
@@ -229,9 +229,9 @@
     }
 
     .day-tab {
-      border: 1px solid var(--line);
+      border: 2px solid var(--line);
       border-radius: 7px;
-      background: #fffef8;
+      background: #fffdf6;
       color: var(--muted);
       min-height: 38px;
       padding: 8px 4px;
@@ -239,9 +239,9 @@
     }
 
     .day-tab.active {
-      background: linear-gradient(135deg, #2fa36b, #2f9bd4);
-      color: white;
-      border-color: var(--leaf);
+      background: linear-gradient(135deg, var(--leaf), var(--tomato));
+      color: var(--ink);
+      border-color: var(--ink);
       font-weight: 700;
     }
 
@@ -252,18 +252,18 @@
     }
 
     .action {
-      border: 1px solid rgba(47, 163, 107, 0.3);
+      border: 2px solid var(--ink);
       border-radius: 7px;
       background: var(--leaf);
-      color: white;
+      color: var(--ink);
       padding: 9px 11px;
       cursor: pointer;
       font-weight: 700;
     }
 
     .action.secondary {
-      background: #fffef8;
-      color: var(--leaf-dark);
+      background: var(--paper);
+      color: var(--ink);
     }
 
     .shop-grid {
@@ -274,13 +274,18 @@
     .shop-group {
       padding: 10px;
       border-radius: 8px;
-      background: #fff3d5;
-      border: 1px solid #f2d890;
+      background: var(--egg);
+      border: 2px solid var(--ink);
     }
 
     .shop-group:nth-child(2n) {
-      background: #e4f8df;
-      border-color: #bfe8ba;
+      background: var(--sky);
+      border-color: var(--ink);
+    }
+
+    .shop-group:nth-child(3n) {
+      background: var(--lilac);
+      border-color: var(--ink);
     }
 
     .shop-group h3 {
@@ -302,14 +307,14 @@
       align-items: start;
       min-width: 0;
       line-height: 1.25;
-      color: #334137;
+      color: var(--ink);
       font-size: 13px;
     }
 
     .check input {
       width: 15px;
       height: 15px;
-      accent-color: var(--leaf);
+      accent-color: var(--tomato);
       margin-top: 0;
     }
 
@@ -323,14 +328,14 @@
       padding: 1px 4px 2px;
       border-radius: 999px;
       background: var(--sky);
-      color: #246578;
+      color: var(--ink);
       font-size: 10px;
       white-space: nowrap;
     }
 
     .tag.keep {
       background: var(--lilac);
-      color: #694f99;
+      color: var(--ink);
     }
 
     .week-grid {
@@ -339,10 +344,10 @@
     }
 
     .day-card {
-      border: 1px solid var(--line);
+      border: 2px solid var(--line);
       border-radius: 8px;
       overflow: hidden;
-      background: #fffdf8;
+      background: var(--paper);
     }
 
     .day-head {
@@ -351,8 +356,8 @@
       align-items: center;
       gap: 10px;
       padding: 10px 12px;
-      background: #f4f8ec;
-      border-bottom: 1px solid var(--line);
+      background: var(--leaf);
+      border-bottom: 2px solid var(--line);
       font-weight: 700;
     }
 
@@ -369,7 +374,7 @@
 
     .day-card .meal-item {
       padding: 8px;
-      background: #fffaf1;
+      background: #fffdf6;
     }
 
     .prep-list, .swap-list, .note-list {
@@ -383,8 +388,8 @@
     .prep-list li, .swap-list li, .note-list li {
       padding: 10px 11px;
       border-radius: 7px;
-      background: #f6fff2;
-      border: 1px solid #cfe9ca;
+      background: var(--lilac);
+      border: 2px solid var(--ink);
       line-height: 1.55;
     }
 
@@ -401,7 +406,7 @@
 
     .safety-strip {
       padding: 12px 13px;
-      background: rgba(255, 245, 213, 0.72);
+      background: var(--egg);
       box-shadow: none;
     }
 
