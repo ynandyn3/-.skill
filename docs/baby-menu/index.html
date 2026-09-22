@@ -28,10 +28,7 @@
 
     body {
       margin: 0;
-      background:
-        linear-gradient(90deg, rgba(17, 17, 17, 0.05) 0 1px, transparent 1px 30px),
-        linear-gradient(180deg, rgba(17, 17, 17, 0.04) 0 1px, transparent 1px 30px),
-        linear-gradient(180deg, #f7f7f2 0%, #fff6b8 42%, #ead8ff 100%);
+      background: #f3f2ed;
       color: var(--ink);
       font-family: "Songti SC", "Noto Serif SC", "STSong", serif;
       min-height: 100vh;
@@ -52,10 +49,21 @@
       padding: 22px 18px 18px;
       border: 3px solid var(--ink);
       border-radius: 8px;
-      background: linear-gradient(135deg, var(--leaf) 0 34%, var(--paper) 34% 100%);
+      background: var(--leaf);
       box-shadow: var(--shadow);
       position: relative;
       overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      height: 42%;
+      background: var(--paper);
+      border-top: 3px solid var(--ink);
     }
 
     .hero::after {
@@ -66,7 +74,8 @@
       right: -42px;
       top: -38px;
       border-radius: 50%;
-      background: repeating-linear-gradient(45deg, rgba(241, 92, 172, 0.58) 0 8px, rgba(255, 240, 138, 0.72) 8px 15px);
+      background: var(--tomato);
+      border: 3px solid var(--ink);
     }
 
     .hero-inner {
@@ -87,7 +96,7 @@
       aspect-ratio: 1;
       border-radius: 50%;
       padding: 4px;
-      background: linear-gradient(135deg, var(--tomato), var(--egg));
+      background: var(--tomato);
       border: 3px solid var(--ink);
       box-shadow: 4px 5px 0 rgba(17, 17, 17, 0.92);
     }
@@ -149,8 +158,24 @@
       padding: 16px;
       border: 2px solid var(--line);
       border-radius: 8px;
-      background: rgba(255, 253, 246, 0.96);
+      background: var(--paper);
       box-shadow: 4px 5px 0 rgba(17, 17, 17, 0.88);
+    }
+
+    .section:nth-of-type(2) {
+      background: var(--egg);
+    }
+
+    .section:nth-of-type(3) {
+      background: var(--sky);
+    }
+
+    .section:nth-of-type(4) {
+      background: var(--lilac);
+    }
+
+    .section:nth-of-type(5) {
+      background: var(--paper);
     }
 
     .section-title {
@@ -177,7 +202,7 @@
     .today-card {
       border-radius: 8px;
       padding: 14px;
-      background: linear-gradient(135deg, var(--sky) 0%, var(--egg) 52%, var(--lilac) 100%);
+      background: var(--paper);
       border: 2px solid var(--ink);
     }
 
@@ -199,8 +224,16 @@
       align-items: start;
       padding: 10px;
       border-radius: 7px;
-      background: rgba(255, 255, 255, 0.9);
+      background: var(--sky);
       border: 2px solid rgba(17, 17, 17, 0.92);
+    }
+
+    .meal-item:nth-child(2n) {
+      background: var(--egg);
+    }
+
+    .meal-item:nth-child(3n) {
+      background: var(--lilac);
     }
 
     .meal-label {
@@ -239,7 +272,7 @@
     }
 
     .day-tab.active {
-      background: linear-gradient(135deg, var(--leaf), var(--tomato));
+      background: var(--tomato);
       color: var(--ink);
       border-color: var(--ink);
       font-weight: 700;
@@ -262,7 +295,7 @@
     }
 
     .action.secondary {
-      background: var(--paper);
+      background: var(--tomato);
       color: var(--ink);
     }
 
@@ -374,7 +407,6 @@
 
     .day-card .meal-item {
       padding: 8px;
-      background: #fffdf6;
     }
 
     .prep-list, .swap-list, .note-list {
@@ -406,7 +438,7 @@
 
     .safety-strip {
       padding: 12px 13px;
-      background: var(--egg);
+      background: var(--leaf);
       box-shadow: none;
     }
 
