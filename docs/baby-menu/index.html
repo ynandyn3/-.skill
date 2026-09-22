@@ -7,16 +7,16 @@
   <style>
     :root {
       --rice: #fff6b8;
-      --paper: #fffdf6;
+      --paper: #ffffff;
       --ink: #111111;
       --muted: #4f4f4f;
       --line: #111111;
-      --leaf: #46d977;
+      --leaf: #40da78;
       --leaf-dark: #111111;
-      --tomato: #f15cac;
+      --tomato: #f16bb5;
       --egg: #fff08a;
-      --sky: #dfeeff;
-      --lilac: #ead8ff;
+      --sky: #dbe9ff;
+      --lilac: #e8d4fa;
       --peach: #ffd7bd;
       --mint: #d9f7e5;
       --shadow: 6px 7px 0 rgba(17, 17, 17, 0.92);
@@ -28,7 +28,7 @@
 
     body {
       margin: 0;
-      background: #f3f2ed;
+      background: #eeeeee;
       color: var(--ink);
       font-family: "Songti SC", "Noto Serif SC", "STSong", serif;
       min-height: 100vh;
@@ -56,6 +56,7 @@
     }
 
     .hero::before {
+      display: none;
       content: "";
       position: absolute;
       left: -3px;
@@ -67,6 +68,7 @@
     }
 
     .hero::after {
+      display: none;
       content: "";
       position: absolute;
       width: 118px;
@@ -162,20 +164,20 @@
       box-shadow: 4px 5px 0 rgba(17, 17, 17, 0.88);
     }
 
-    .section:nth-of-type(2) {
-      background: var(--egg);
+    .section[aria-labelledby="today-title"] {
+      background: var(--paper);
     }
 
-    .section:nth-of-type(3) {
+    .section[aria-labelledby="shopping-title"] {
       background: var(--sky);
     }
 
-    .section:nth-of-type(4) {
-      background: var(--lilac);
+    .section[aria-labelledby="prep-title"] {
+      background: var(--egg);
     }
 
-    .section:nth-of-type(5) {
-      background: var(--paper);
+    .section[aria-labelledby="swap-title"] {
+      background: var(--lilac);
     }
 
     .section-title {
@@ -224,12 +226,12 @@
       align-items: start;
       padding: 10px;
       border-radius: 7px;
-      background: var(--sky);
+      background: var(--egg);
       border: 2px solid rgba(17, 17, 17, 0.92);
     }
 
     .meal-item:nth-child(2n) {
-      background: var(--egg);
+      background: var(--sky);
     }
 
     .meal-item:nth-child(3n) {
@@ -237,7 +239,7 @@
     }
 
     .meal-label {
-      color: var(--tomato);
+      color: var(--ink);
       font-weight: 700;
     }
 
@@ -264,7 +266,7 @@
     .day-tab {
       border: 2px solid var(--line);
       border-radius: 7px;
-      background: #fffdf6;
+      background: var(--paper);
       color: var(--muted);
       min-height: 38px;
       padding: 8px 4px;
@@ -307,17 +309,17 @@
     .shop-group {
       padding: 10px;
       border-radius: 8px;
-      background: var(--egg);
+      background: var(--paper);
       border: 2px solid var(--ink);
     }
 
     .shop-group:nth-child(2n) {
-      background: var(--sky);
+      background: var(--paper);
       border-color: var(--ink);
     }
 
     .shop-group:nth-child(3n) {
-      background: var(--lilac);
+      background: var(--paper);
       border-color: var(--ink);
     }
 
@@ -420,13 +422,13 @@
     .prep-list li, .swap-list li, .note-list li {
       padding: 10px 11px;
       border-radius: 7px;
-      background: var(--lilac);
+      background: var(--paper);
       border: 2px solid var(--ink);
       line-height: 1.55;
     }
 
     .swap-list strong {
-      color: var(--tomato);
+      color: var(--ink);
     }
 
     .small-note {
