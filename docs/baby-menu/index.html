@@ -6,20 +6,20 @@
   <title>宝宝这周吃什么</title>
   <style>
     :root {
-      --rice: #fff6b8;
+      --rice: #fff4ce;
       --paper: #ffffff;
-      --ink: #111111;
-      --muted: #4f4f4f;
-      --line: #111111;
-      --leaf: #40da78;
-      --leaf-dark: #111111;
-      --tomato: #f16bb5;
-      --egg: #fff08a;
-      --sky: #dbe9ff;
-      --lilac: #e8d4fa;
-      --peach: #ffd7bd;
-      --mint: #d9f7e5;
-      --shadow: 6px 7px 0 rgba(17, 17, 17, 0.92);
+      --ink: #0a0a0a;
+      --muted: #525252;
+      --line: #dedede;
+      --leaf: #2f81f7;
+      --leaf-dark: #225cb2;
+      --tomato: #ff6b7a;
+      --egg: #ffc224;
+      --sky: #edf4ff;
+      --lilac: #f4f4f4;
+      --peach: #fff0f2;
+      --mint: #f7f7f7;
+      --shadow: 4px 4px 0 #0a0a0a;
     }
 
     * {
@@ -28,9 +28,9 @@
 
     body {
       margin: 0;
-      background: #eeeeee;
+      background: #ffffff;
       color: var(--ink);
-      font-family: "Songti SC", "Noto Serif SC", "STSong", serif;
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
       min-height: 100vh;
       letter-spacing: 0;
     }
@@ -47,10 +47,11 @@
 
     .hero {
       padding: 22px 18px 18px;
-      border: 3px solid var(--ink);
-      border-radius: 8px;
-      background: var(--leaf);
-      box-shadow: var(--shadow);
+      border: 0;
+      border-bottom: 2px solid var(--ink);
+      border-radius: 0;
+      background: var(--paper);
+      box-shadow: none;
       position: relative;
       overflow: hidden;
     }
@@ -98,9 +99,9 @@
       aspect-ratio: 1;
       border-radius: 50%;
       padding: 4px;
-      background: var(--tomato);
-      border: 3px solid var(--ink);
-      box-shadow: 4px 5px 0 rgba(17, 17, 17, 0.92);
+      background: var(--egg);
+      border: 2px solid var(--ink);
+      box-shadow: var(--shadow);
     }
 
     .hero-avatar img {
@@ -117,12 +118,15 @@
       color: var(--leaf-dark);
       font-size: 13px;
       font-weight: 700;
+      display: inline-block;
+      padding: 4px 7px;
+      background: var(--sky);
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(30px, 9vw, 50px);
-      line-height: 1.05;
+      font-size: 42px;
+      line-height: 1.25;
       letter-spacing: 0;
     }
 
@@ -148,20 +152,21 @@
       align-items: center;
       gap: 6px;
       padding: 7px 10px;
-      border-radius: 999px;
-      background: var(--sky);
+      border-radius: 4px;
+      background: var(--mint);
       color: var(--ink);
       font-size: 13px;
-      border: 2px solid var(--ink);
+      border: 1px solid var(--line);
     }
 
     .section {
       margin-top: 14px;
       padding: 16px;
-      border: 2px solid var(--line);
-      border-radius: 8px;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      border-radius: 0;
       background: var(--paper);
-      box-shadow: 4px 5px 0 rgba(17, 17, 17, 0.88);
+      box-shadow: none;
     }
 
     .section[aria-labelledby="today-title"] {
@@ -169,15 +174,15 @@
     }
 
     .section[aria-labelledby="shopping-title"] {
-      background: var(--sky);
+      background: var(--paper);
     }
 
     .section[aria-labelledby="prep-title"] {
-      background: var(--egg);
+      background: var(--paper);
     }
 
     .section[aria-labelledby="swap-title"] {
-      background: var(--lilac);
+      background: var(--paper);
     }
 
     .section-title {
@@ -193,7 +198,12 @@
       font-size: 21px;
       line-height: 1.2;
       letter-spacing: 0;
+      border-left: 5px solid var(--tomato);
+      padding-left: 9px;
     }
+
+    #shopping-title, #swap-title { border-left-color: var(--leaf); }
+    #prep-title { border-left-color: var(--egg); }
 
     .hint {
       color: var(--muted);
@@ -202,21 +212,22 @@
     }
 
     .today-card {
-      border-radius: 8px;
-      padding: 14px;
+      border-radius: 0;
+      padding: 0;
       background: var(--paper);
-      border: 2px solid var(--ink);
+      border: 0;
     }
 
     .today-date {
       margin: 0 0 10px;
       font-weight: 700;
-      color: var(--leaf-dark);
+      color: var(--muted);
+      font-size: 13px;
     }
 
     .meal-list {
       display: grid;
-      gap: 8px;
+      gap: 12px;
     }
 
     .meal-item {
@@ -224,24 +235,32 @@
       grid-template-columns: 3.5em 1fr;
       gap: 10px;
       align-items: start;
-      padding: 10px;
+      padding: 14px 12px;
       border-radius: 7px;
-      background: var(--egg);
-      border: 2px solid rgba(17, 17, 17, 0.92);
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--tomato);
     }
 
     .meal-item:nth-child(2n) {
-      background: var(--sky);
+      border-left-color: var(--leaf);
     }
 
     .meal-item:nth-child(3n) {
-      background: var(--lilac);
+      border-left-color: var(--egg);
     }
 
     .meal-label {
       color: var(--ink);
       font-weight: 700;
+      background: var(--tomato);
+      padding: 4px 0;
+      text-align: center;
+      border-radius: 3px;
     }
+
+    .meal-item:nth-child(2n) .meal-label { background: var(--leaf); color: var(--ink); }
+    .meal-item:nth-child(3n) .meal-label { background: var(--egg); }
 
     .meal-text {
       line-height: 1.55;
@@ -250,7 +269,7 @@
     .meal-note {
       margin-top: 6px;
       padding-top: 6px;
-      border-top: 1px dashed rgba(17, 17, 17, 0.34);
+      border-top: 1px solid #ececec;
       color: var(--muted);
       font-size: 12px;
       line-height: 1.55;
@@ -264,7 +283,7 @@
     }
 
     .day-tab {
-      border: 2px solid var(--line);
+      border: 1px solid var(--line);
       border-radius: 7px;
       background: var(--paper);
       color: var(--muted);
@@ -274,8 +293,8 @@
     }
 
     .day-tab.active {
-      background: var(--tomato);
-      color: var(--ink);
+      background: var(--ink);
+      color: var(--paper);
       border-color: var(--ink);
       font-weight: 700;
     }
@@ -289,15 +308,15 @@
     .action {
       border: 2px solid var(--ink);
       border-radius: 7px;
-      background: var(--leaf);
-      color: var(--ink);
+      background: var(--ink);
+      color: var(--paper);
       padding: 9px 11px;
       cursor: pointer;
       font-weight: 700;
     }
 
     .action.secondary {
-      background: var(--tomato);
+      background: var(--paper);
       color: var(--ink);
     }
 
@@ -310,24 +329,29 @@
       padding: 10px;
       border-radius: 8px;
       background: var(--paper);
-      border: 2px solid var(--ink);
+      border: 1px solid var(--line);
     }
 
     .shop-group:nth-child(2n) {
       background: var(--paper);
-      border-color: var(--ink);
+      border-color: var(--line);
     }
 
     .shop-group:nth-child(3n) {
       background: var(--paper);
-      border-color: var(--ink);
+      border-color: var(--line);
     }
 
     .shop-group h3 {
       margin: 0 0 7px;
       font-size: 15px;
       letter-spacing: 0;
+      padding: 6px 8px;
+      background: var(--peach);
     }
+
+    .shop-group:nth-child(2) h3 { background: var(--sky); }
+    .shop-group:nth-child(3) h3 { background: var(--rice); }
 
     .check-list {
       display: grid;
@@ -349,7 +373,7 @@
     .check input {
       width: 15px;
       height: 15px;
-      accent-color: var(--tomato);
+      accent-color: var(--leaf-dark);
       margin-top: 0;
     }
 
@@ -421,9 +445,10 @@
 
     .prep-list li, .swap-list li, .note-list li {
       padding: 10px 11px;
-      border-radius: 7px;
+      border-radius: 0;
       background: var(--paper);
-      border: 2px solid var(--ink);
+      border: 0;
+      border-bottom: 1px solid var(--line);
       line-height: 1.55;
     }
 
@@ -440,7 +465,7 @@
 
     .safety-strip {
       padding: 12px 13px;
-      background: var(--leaf);
+      background: var(--mint);
       box-shadow: none;
     }
 
