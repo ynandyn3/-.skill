@@ -50,7 +50,7 @@
       border: 0;
       border-bottom: 2px solid var(--ink);
       border-radius: 0;
-      background: var(--paper);
+      background: #fff9e8;
       box-shadow: none;
       position: relative;
       overflow: hidden;
@@ -115,12 +115,12 @@
 
     .kicker {
       margin: 0 0 9px;
-      color: var(--leaf-dark);
+      color: var(--ink);
       font-size: 13px;
       font-weight: 700;
       display: inline-block;
       padding: 4px 7px;
-      background: var(--sky);
+      background: var(--leaf);
     }
 
     h1 {
@@ -153,7 +153,7 @@
       gap: 6px;
       padding: 7px 10px;
       border-radius: 4px;
-      background: var(--mint);
+      background: var(--paper);
       color: var(--ink);
       font-size: 13px;
       border: 1px solid var(--line);
@@ -170,19 +170,19 @@
     }
 
     .section[aria-labelledby="today-title"] {
-      background: var(--paper);
+      background: var(--peach);
     }
 
     .section[aria-labelledby="shopping-title"] {
-      background: var(--paper);
+      background: var(--sky);
     }
 
     .section[aria-labelledby="prep-title"] {
-      background: var(--paper);
+      background: #fff9e8;
     }
 
     .section[aria-labelledby="swap-title"] {
-      background: var(--paper);
+      background: var(--sky);
     }
 
     .section-title {
@@ -198,12 +198,14 @@
       font-size: 21px;
       line-height: 1.2;
       letter-spacing: 0;
-      border-left: 5px solid var(--tomato);
-      padding-left: 9px;
+      border: 0;
+      padding: 5px 9px;
+      border-radius: 3px;
+      background: var(--tomato);
     }
 
-    #shopping-title, #swap-title { border-left-color: var(--leaf); }
-    #prep-title { border-left-color: var(--egg); }
+    #shopping-title, #swap-title { background: var(--leaf); }
+    #prep-title { background: var(--egg); }
 
     .hint {
       color: var(--muted);
@@ -214,7 +216,7 @@
     .today-card {
       border-radius: 0;
       padding: 0;
-      background: var(--paper);
+      background: transparent;
       border: 0;
     }
 
@@ -347,11 +349,12 @@
       font-size: 15px;
       letter-spacing: 0;
       padding: 6px 8px;
-      background: var(--peach);
+      background: var(--tomato);
+      border-radius: 3px;
     }
 
-    .shop-group:nth-child(2) h3 { background: var(--sky); }
-    .shop-group:nth-child(3) h3 { background: var(--rice); }
+    .shop-group:nth-child(2) h3 { background: var(--leaf); }
+    .shop-group:nth-child(3) h3 { background: var(--egg); }
 
     .check-list {
       display: grid;
@@ -446,7 +449,7 @@
     .prep-list li, .swap-list li, .note-list li {
       padding: 10px 11px;
       border-radius: 0;
-      background: var(--paper);
+      background: transparent;
       border: 0;
       border-bottom: 1px solid var(--line);
       line-height: 1.55;
@@ -465,7 +468,7 @@
 
     .safety-strip {
       padding: 12px 13px;
-      background: var(--mint);
+      background: var(--peach);
       box-shadow: none;
     }
 
